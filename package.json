@@ -6,6 +6,7 @@
     "id": "cordova-plugin-media",
     "platforms": [
       "android",
+      "browser",
       "amazon-fireos",
       "ubuntu",
       "ios",

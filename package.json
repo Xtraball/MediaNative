@@ -1,9 +1,9 @@
 {
-  "name": "cordova-plugin-media",
-  "version": "2.4.1",
+  "name": "MediaNative",
+  "version": "5.0.3",
   "description": "Cordova Media Plugin",
   "cordova": {
-    "id": "cordova-plugin-media",
+    "id": "MediaNative",
     "platforms": [
       "android",
       "browser",
@@ -46,6 +46,12 @@
   "engines": {
     "cordovaDependencies": {
       "3.0.0": {
+        "cordova-android": ">=6.1.0"
+      },
+      "4.0.0": {
+        "cordova-android": ">=6.3.0"
+      },
+      "6.0.0": {
         "cordova": ">100"
       }
     }

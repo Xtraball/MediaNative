@@ -268,6 +268,7 @@ BOOL keepAvAudioSessionAlwaysActive = NO;
             // Avoid excessive buffering so streaming media can play instantly on iOS
             // Removes preplay delay on ios 10+, makes consistent with ios9 behaviour
             if ([NSProcessInfo.processInfo isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){10,0,0}]) {
+                // May need to be YES for streams & NO for remote media files
                 avPlayer.automaticallyWaitsToMinimizeStalling = NO;
             }
         }
@@ -385,7 +386,7 @@ BOOL keepAvAudioSessionAlwaysActive = NO;
                     CMTime time = avPlayer.currentItem.asset.duration;
                     duration = CMTimeGetSeconds(time);
                     if (isnan(duration)) {
-                        NSLog(@"Duration is infifnite, setting it to -1");
+                        NSLog(@"Duration is infinite, setting it to -1");
                         duration = -1;
                     }
 
@@ -969,7 +970,7 @@ BOOL keepAvAudioSessionAlwaysActive = NO;
             param=[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         }
         NSString* jsString = [NSString stringWithFormat:@"%@(\"%@\",%d,%@);",
-              @"cordova.require('cordova-plugin-media.Media').onStatus",
+              @"cordova.require('MediaNative.MediaNative').onStatus",
               mediaId, (int)what, param];
         [self.commandDelegate evalJs:jsString];
     }

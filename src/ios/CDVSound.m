@@ -242,6 +242,7 @@ BOOL keepAvAudioSessionAlwaysActive = NO;
 {
     NSString* mediaId = [command argumentAtIndex:0];
     NSString* resourcePath = [command argumentAtIndex:1];
+    BOOL bIsStream = [[command argumentAtIndex:2] boolValue];
 
     CDVAudioFile* audioFile = [self audioFileForResource:resourcePath withId:mediaId doValidation:YES forRecording:NO suppressValidationErrors:YES];
 
@@ -269,7 +270,7 @@ BOOL keepAvAudioSessionAlwaysActive = NO;
             // Removes preplay delay on ios 10+, makes consistent with ios9 behaviour
             if ([NSProcessInfo.processInfo isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){10,0,0}]) {
                 // May need to be YES for streams & NO for remote media files
-                avPlayer.automaticallyWaitsToMinimizeStalling = NO;
+                avPlayer.automaticallyWaitsToMinimizeStalling = bIsStream;
             }
         }
 

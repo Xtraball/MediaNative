@@ -131,10 +131,11 @@ public class AudioPlayer implements OnCompletionListener, OnBufferingUpdateListe
     public void destroy() {
         // Stop any play or record
         if (this.player != null) {
-            if ((this.state == STATE.MEDIA_RUNNING) || (this.state == STATE.MEDIA_PAUSED)) {
+            if (this.player.isPlaying()) {
                 this.player.stop();
                 this.setState(STATE.MEDIA_STOPPED);
             }
+            this.player.reset();
             this.player.release();
             this.player = null;
         }
